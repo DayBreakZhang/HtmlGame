@@ -3,7 +3,7 @@
 This is an old repository that I manage only when I have some time. You will find all my old projects, that I made when I was learning programming, especially web tehcnologies. Don't take any sample code of this repo as a good example, they are of very poor quality.
 
 ### [Blackmarket - incremental-game](https://archive.totominc.io/blackmarket)
-Another simple incremental-game, about selling drugs. You start with only a gun, and you have to build a drug empire to become trillionnaire. Blackmarket was my first really big project about in HTML/CSS/JS. It has been totally re-done : scripts and interface. Blackmarket has reach its official release, take a look now!
+一款简单的点击游戏，关于销售毒品。你只从枪开始，你必须建立一个毒品帝国来成为亿万富翁。黑市是我在HTML/CSS/JS中第一个真正的大项目。它已经被完全重新编写：脚本和接口。黑市已经正式发布了，看看吧！
 
 ### [Incremental-RPG](https://archive.totominc.io/incremental-rpg/)
 My very second project in JS, where I wanted to focus more on design using Bootstrap and some free themes.
@@ -22,3 +22,12 @@ Another prototype were you rebuild the universe with your god's hands. It got so
 
 ### [Fallout terminal](https://archive.totominc.io/fallout-terminal/)
 A very cool Fallout-like terminal effect made mainly with CSS.
+
+###[Realm Of Decay](https://github.com/Psychemaster/RealmOfDecay)
+一款RGP游戏，通过打怪升级和装备
+
+###[Kittens Game](https://bitbucket.org/bloodrizer/kitten-game)
+一款点击类的游戏，收集资料建造建筑壮大自己
+
+###[A Dark Room](https://github.com/doublespeakgames/adarkroom)
+一款纯文字的冒险游戏，收集材料壮大自己，外出冒险
