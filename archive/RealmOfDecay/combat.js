@@ -14,7 +14,7 @@ Game.startCombat = function (isManual, isBoss) {
     if (Game.p_repairInterval) {
       window.clearInterval(Game.p_repairInterval);
       Game.p_repairInterval = null;
-      Game.toastNotification("Repair interrupted, entering combat...");
+      Game.toastNotification("维修打断，进入战斗...");
     }
     Game.p_Adrenaline = Game.powerLevel(Game.SKILL_POWER_SURGE); // Only way to enter combat with an Adrenaline Rush is via Power Surge.
     if (Game.powerLevel(Game.SKILL_POWER_SURGE) > 0) {

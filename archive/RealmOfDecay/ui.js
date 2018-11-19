@@ -117,11 +117,11 @@ Game.updateTitleBar = function () {
   }
   // Player's Name
   playerName = document.getElementById("playerNameOut");
-  playerName.innerHTML = Game.p_Name + " (Lv. " + Game.p_Level + ")";
+  playerName.innerHTML = Game.p_Name + " (等级. " + Game.p_Level + ")";
   // Enemy Name (if applicable)
   enemyName = document.getElementById("enemyNameOut");
   noEnemy = document.getElementById("noEnemyOut");
-  enemyName.innerHTML = Game.p_State === Game.STATE_COMBAT ? "(Lv. " + Game.e_Level + ") " + Game.e_Name : "";
+  enemyName.innerHTML = Game.p_State === Game.STATE_COMBAT ? "(等级. " + Game.e_Level + ") " + Game.e_Name : "";
   if (Game.p_State !== Game.STATE_COMBAT) {
     enemyName.classList.add("hiddenElement");
     noEnemy.classList.remove("hiddenElement");
@@ -174,7 +174,7 @@ Game.updateTitleBar = function () {
   EHBText = document.getElementById("player_XPBarText");
   Prefix = document.getElementById("player_currentXPPrefix");
   if (Game.p_State !== Game.STATE_COMBAT) {
-    Prefix.innerHTML = "EXP:";
+    Prefix.innerHTML = "经验值:";
     EHB.style.display = "";
     EH_Percent = Game.p_EXP / Game.p_NextEXP;
     EHB.style.background = "#0099ff";
@@ -182,7 +182,7 @@ Game.updateTitleBar = function () {
     EHB.style.MozTransition = "width 0.5s";
     EHB.style.WebkitTransition = "width 0.5s";
   } else {
-    Prefix.innerHTML = "Enemy HP:";
+    Prefix.innerHTML = "怪物血量:";
     EHB.style.display = "";
     EH_Percent = Game.e_HP / Game.e_MaxHP;
     if (EH_Percent < 0.25) {
@@ -590,27 +590,27 @@ Game.buildArmourEffectString = function (effect) {
   switch (effect[0]) {
     case Game.ARMOUR_STR_MELEE:
       returnBlock.setAttribute("style", "color:#33cc33;");
-      returnBlock.innerHTML = "+" + effect[1] + " Melee Resist";
+      returnBlock.innerHTML = "+" + effect[1] + " 近战抵抗";
       break;
     case Game.ARMOUR_STR_RANGE:
       returnBlock.setAttribute("style", "color:#33cc33;");
-      returnBlock.innerHTML = "+" + effect[1] + " Range Resist";
+      returnBlock.innerHTML = "+" + effect[1] + " 远程抵抗";
       break;
     case Game.ARMOUR_STR_MAGIC:
       returnBlock.setAttribute("style", "color:#33cc33;");
-      returnBlock.innerHTML = "+" + effect[1] + " Magic Resist";
+      returnBlock.innerHTML = "+" + effect[1] + " 魔法抵抗";
       break;
     case Game.ARMOUR_VULN_MELEE:
       returnBlock.setAttribute("style", "color:red;");
-      returnBlock.innerHTML = "-" + effect[1] + " Melee Resist";
+      returnBlock.innerHTML = "-" + effect[1] + " 近战抵抗";
       break;
     case Game.ARMOUR_VULN_RANGE:
       returnBlock.setAttribute("style", "color:red;");
-      returnBlock.innerHTML = "-" + effect[1] + " Range Resist";
+      returnBlock.innerHTML = "-" + effect[1] + " 远程抵抗";
       break;
     case Game.ARMOUR_VULN_MAGIC:
       returnBlock.setAttribute("style", "color:red;");
-      returnBlock.innerHTML = "-" + effect[1] + " Magic Resist";
+      returnBlock.innerHTML = "-" + effect[1] + " 魔法抵抗";
       break;
     default:
       returnBlock.setAttribute("style", "");
@@ -638,22 +638,22 @@ Game.updateCombatTab = function () {
   // Player Panel
   updateElementIDContent("combat_playerName", Game.p_Name);
 
-  updateElementIDContent("combat_playerLevel", "Level " + Game.p_Level);
+  updateElementIDContent("combat_playerLevel", "等级 " + Game.p_Level);
 
-  updateElementIDContent("combat_playerHP", "HP: " + prettifyNumber(Game.p_HP) + " / " + prettifyNumber(Game.p_MaxHP) + " (" + Math.floor(Game.p_HP / Game.p_MaxHP * 10000) / 100 + "%)");
+  updateElementIDContent("combat_playerHP", "生命值: " + prettifyNumber(Game.p_HP) + " / " + prettifyNumber(Game.p_MaxHP) + " (" + Math.floor(Game.p_HP / Game.p_MaxHP * 10000) / 100 + "%)");
 
-  updateElementIDContent("combat_playerDebuff", "<strong>Debuff:</strong> " + Game.p_Debuff[1] + "(" + Game.debuff_names[Game.p_Debuff[0] - Game.DEBUFF_SHRED] + ") - " + Game.player_debuffTimer + "s");
+  updateElementIDContent("combat_playerDebuff", "<strong>增益:</strong> " + Game.p_Debuff[1] + "(" + Game.debuff_names[Game.p_Debuff[0] - Game.DEBUFF_SHRED] + ") - " + Game.player_debuffTimer + "s");
 
-  updateElementIDContent("combat_burstButton", Game.p_specUsed ? "Burst Unavailable" : (Game.powerLevel(Game.SKILL_WILD_SWINGS) > 0 ? "Wild Swings" : "Burst Attack"));
+  updateElementIDContent("combat_burstButton", Game.p_specUsed ? "突发不可用" : (Game.powerLevel(Game.SKILL_WILD_SWINGS) > 0 ? "剧烈波动" : "突发攻击"));
 
-  updateElementIDContent("combat_playerWeaponDurability", Game.p_Weapon[8] + " uses");
+  updateElementIDContent("combat_playerWeaponDurability", Game.p_Weapon[8] + " 耐久");
 
-  updateElementIDContent("combat_playerArmourDurability", Game.p_Armour[3] + " uses");
+  updateElementIDContent("combat_playerArmourDurability", Game.p_Armour[3] + " 耐久");
 
   // Enemy Panel
-  updateElementIDContent("combat_enemyHealth", Game.p_State === Game.STATE_COMBAT ? ("HP: " + prettifyNumber(Game.e_HP) + " / " + prettifyNumber(Game.e_MaxHP) + " (" + Math.floor(Game.e_HP / Game.e_MaxHP * 10000) / 100 + "%)") : "Elite Appearance Chance: " + Game.bossChance + "%");
+  updateElementIDContent("combat_enemyHealth", Game.p_State === Game.STATE_COMBAT ? ("生命值: " + prettifyNumber(Game.e_HP) + " / " + prettifyNumber(Game.e_MaxHP) + " (" + Math.floor(Game.e_HP / Game.e_MaxHP * 10000) / 100 + "%)") : "精英出现的几率: " + Game.bossChance + "%");
 
-  updateElementIDContent("combat_enemyDebuff", "<strong>Debuff:</strong> " + Game.e_Debuff[1] + "(" + Game.debuff_names[Game.e_Debuff[0] - Game.DEBUFF_SHRED] + ") - " + Game.enemy_debuffTimer + "s");
+  updateElementIDContent("combat_enemyDebuff", "<strong>增益:</strong> " + Game.e_Debuff[1] + "(" + Game.debuff_names[Game.e_Debuff[0] - Game.DEBUFF_SHRED] + ") - " + Game.enemy_debuffTimer + "s");
 
   Game.updateTitleBar();
 };
@@ -757,12 +757,12 @@ Game.updatePlayerTab = function () {
   // Player Weapon (Durability)
   playerWeaponDurability = document.getElementById("combat_playerWeaponDurability");
   if (playerWeaponDurability !== null) {
-    playerWeaponDurability.innerHTML = Game.p_Weapon[8] + " uses";
+    playerWeaponDurability.innerHTML = Game.p_Weapon[8] + " 耐久";
   }
   // Player Armour (Durability)
   playerArmourDurability = document.getElementById("combat_playerArmourDurability");
   if (playerArmourDurability !== null) {
-    playerArmourDurability.innerHTML = Game.p_Armour[3] + " uses";
+    playerArmourDurability.innerHTML = Game.p_Armour[3] + " 耐久";
   }
 };
 

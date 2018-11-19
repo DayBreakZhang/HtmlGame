@@ -3,18 +3,18 @@
 /*global Game, prettifyNumber, abbreviateNumber, arraysEqual, statValue, clearElementContent, updateElementIDContent, toggleHelpVis, keyBindings*/
 "use strict";
 Game.ZONE_NAMES = [
-  "Whispering Cave",
-  "Ash Cultist Outpost",
-  "Dawn's Light Swamp",
-  "The Final Stop",
-  "Echoing Passage",
-  "The Swiftsteel Workshop",
-  "Weary Hollow Chapel",
-  "The Fallen Pillar",
-  "Dragons' Crown",
-  "Ley Line Research Facility",
-  "The Smouldering Heart",
-  "The Pillar of Ash"];
+  "低语洞穴",
+  "灰教徒前哨",
+  "黎明之光沼泽",
+  "最后一站",
+  "回声通道",
+  "斯威夫特钢铁车间",
+  "疲倦的空教堂",
+  "堕落的柱子",
+  "龙的王冠",
+  "莱伊行研究设施",
+  "燃烧的心",
+  "灰烬之柱"];
 Game.ZONE_DESCRIPTIONS = [
   "What might appear to be a calm refuge in the wastes, the Whispering Cave soon revealed itself to be anything but that once explorers started to plumb its' depths. The cave plays home to a host of otherwise rare animals that sought sanctuary from the ravaging wars above ground, and the creatures do not take kindly to humans trespassing on one of the few places left for them to call home.",
   "The Ash Cult has long believed the world is overdue to be reborn in flames, and as such has been working around the clock to gather supplies and capture unwitting survivors in the hope of gathering a large enough offering to finally bring the wrath of the heavens down on the world. Small outposts like this one generally don't hold onto their captures for very long, yet if you're lucky there may be some pickings to be had before they're all transported away to their main fortress.",

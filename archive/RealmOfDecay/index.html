@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-
+<meta http-equiv="content-type" content="text/html" charset="utf-8">
 <head>
-  <title>Realm of Decay</title>
+  <title>Html Game</title>
   <link rel="stylesheet" type="text/css" href="style.v1.0.css" />
   <link rel="stylesheet" type="text/css" href="style.v1.1.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,39 +12,39 @@
   <div id="main" class="gameWrapper">
     <div id="headerBlock">
       <!-- All the header stuff.  -->
-      <div style="text-align:center;font-size:18px;font-weight:bold;">Realm of Decay</div>
-      <div style="text-align:center;font-size:10px;">by /u/Psychemaster - Version 1.1
+      <div style="text-align:center;font-size:18px;font-weight:bold;">一个人的战斗</div>
+      <div style="text-align:center;font-size:10px;">版本 1.1
       </div>
       <span style="display:block;text-align:right;">
-          Seeds: <span id="seedsOut"></span>&nbsp;Scrap: <span id="scrapOut"></span>
+        种子: <span id="seedsOut"></span>&nbsp;碎片: <span id="scrapOut"></span>
       </span>
       <hr style="margin-bottom:9px;" />
       <!-- HP Bars -->
       <div class="fillingBorder">
         <img id="player_HPBarOut" class="fillingBar" src="Clear.gif" />
-        <div id="player_HPBarText" class="fillingText">HP: <span id="player_currentHPOut"></span>/<span id="player_maxHPOut"></span> (<span id="player_percentHPOut"></span>)</div>
+        <div id="player_HPBarText" class="fillingText">生命值: <span id="player_currentHPOut"></span>/<span id="player_maxHPOut"></span> (<span id="player_percentHPOut"></span>)</div>
       </div>
       <div class="reverseFillingBorder">
         <img id="player_XPBarOut" class="fillingBar" src="Clear.gif" />
         <div id="player_XPBarText" class="fillingText"><span id="player_currentXPPrefix"></span>&nbsp;<span id="player_currentXPOut"></span>/<span id="player_maxXPOut"></span> (<span id="player_percentXPOut"></span>)</div>
       </div>
       <!-- Text below HP bars -->
-      <div id="playerNameOut" title="Rename your character." style="cursor:pointer;float:left;font-weight:bold;font-size:16px;" onclick="Game.renamePlayer();"></div>
-      <div id="enemyNameOut" title="Activate Burst Attack." style="cursor:pointer;float:right;text-align:right;font-weight:bold;font-size:16px;" onclick="Game.burstAttack();"></div>
-      <div id="noEnemyOut" title="Look for something to kill." style="cursor:pointer;float:right;text-align:right;font-weight:bold;font-size:16px" onclick="Game.startCombat(true);" class="hiddenElement">Click here to enter combat.</div>
+      <div id="playerNameOut" title="角色重命名." style="cursor:pointer;float:left;font-weight:bold;font-size:16px;" onclick="Game.renamePlayer();"></div>
+      <div id="enemyNameOut" title="激发愤怒攻击." style="cursor:pointer;float:right;text-align:right;font-weight:bold;font-size:16px;" onclick="Game.burstAttack();"></div>
+      <div id="noEnemyOut" title="寻找怪物." style="cursor:pointer;float:right;text-align:right;font-weight:bold;font-size:16px" onclick="Game.startCombat(true);" class="hiddenElement">点击这里进入战斗.</div>
       <hr style="margin-top:4.5em;" />
       <!-- Tabs -->
       <div class="header" id="topBar">
-        <span class="headerTab" id="playerTab">Player<span id="header_statPoints" class="indicator"></span></span>
-        <span class="headerTab" id="combatTab">Combat<span id="header_combatState" class="indicator"></span></span>
-        <span class="headerTab" id="zoneTab">Zones</span>
-        <span class="headerTab" id="skillsTab">Skills<span id="header_skillPoints" class="indicator"></span></span>
-        <span class="headerTab" id="inventoryTab">Items<span id="header_inventoryState" class="indicator"></span></span>
-        <span class="headerTab" id="storeTab">Store</span>
-        <span class="headerTab" id="optionsTab">Options</span>
-        <span class="headerTab" id="helpTab">Help</span>
-        <span class="headerTab" id="updateTab">Updates</span>
-        <span class="headerTab" id="badgeTab">Badges</span>
+        <span class="headerTab" id="playerTab">角色<span id="header_statPoints" class="indicator"></span></span>
+        <span class="headerTab" id="combatTab">战场<span id="header_combatState" class="indicator"></span></span>
+        <span class="headerTab" id="zoneTab">地图</span>
+        <span class="headerTab" id="skillsTab">技能<span id="header_skillPoints" class="indicator"></span></span>
+        <span class="headerTab" id="inventoryTab">背包<span id="header_inventoryState" class="indicator"></span></span>
+        <span class="headerTab" id="storeTab">商场</span>
+        <span class="headerTab" id="optionsTab">设置</span>
+        <span class="headerTab" id="helpTab">帮助</span>
+        <span class="headerTab" id="updateTab">更新</span>
+        <span class="headerTab" id="badgeTab">徽章</span>
       </div>
     </div>
     <table style="width:100%;">
@@ -54,51 +54,51 @@
             <!-- Stat allocation table -->
             <table class="subTable">
               <tr id="player_statPointHeader">
-                <td colspan="4"><span style="font-size:20px;font-weight:bold;">Stat Point Allocation</span><br /><span style="margin-left:0.5em;" id="player_statPointHeaderOut"></span> points free: </td>
-                <td colspan="2" style="text-align:center;"><span class="headerTab" style="width:auto;padding:10px;" onclick="Game.statReset();">Reset Your Stats</span></td>
+                <td colspan="4"><span style="font-size:20px;font-weight:bold;">设置角色属性</span><br /><span style="margin-left:0.5em;" id="player_statPointHeaderOut"></span> 未分配属性: </td>
+                <td colspan="2" style="text-align:center;"><span class="headerTab" style="width:auto;padding:10px;" onclick="Game.statReset();">重置属性</span></td>
               </tr>
               <tr>
                 <td colspan="4">
-                  <div style="font-weight:bold;font-size:18px;">Strength (<span id="player_strPointsBase" style="font-size:18px;"></span><span id="player_strPointsAssigned" class="q223" style="font-size:18px;"></span>)</div>
-                  <div style="margin-left:0.5em;">Increases damage dealt with melee weapons.<br />Increases chance to block attacks by <span id="player_statPointBlockChance"></span>%.</div>
+                  <div style="font-weight:bold;font-size:18px;">力量 (<span id="player_strPointsBase" style="font-size:18px;"></span><span id="player_strPointsAssigned" class="q223" style="font-size:18px;"></span>)</div>
+                  <div style="margin-left:0.5em;">增加近战武器伤害.<br />增加格挡攻击几率 <span id="player_statPointBlockChance"></span>%.</div>
                 </td>
                 <td colspan="2" style="text-align:center;" class="statAddButtons">
-                  <span class="headerTab" onclick="Game.addStat(Game.STAT_STR, 1);">+1 STR</span>
-                  <span class="headerTab" onclick="Game.addStat(Game.STAT_STR, 10);">+10 STR</span>
-                  <span class="headerTab" onclick="Game.addStat(Game.STAT_STR, Number.MAX_SAFE_INTEGER);">+ALL STR</span>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="4">
-                  <div style="font-weight:bold;font-size:18px;">Dexterity (<span id="player_dexPointsBase" style="font-size:18px;"></span><span id="player_dexPointsAssigned" class="q223" style="font-size:18px;"></span>)</div>
-                  <div style="margin-left:0.5em;">Increases damage dealt with ranged weapons.<br />Increases chance to critically strike by <span id="player_statPointCritChance"></span>%.</div>
-                </td>
-                <td colspan="2" style="text-align:center;" class="statAddButtons">
-                  <span class="headerTab" onclick="Game.addStat(Game.STAT_DEX, 1);">+1 DEX</span>
-                  <span class="headerTab" onclick="Game.addStat(Game.STAT_DEX, 10);">+10 DEX</span>
-                  <span class="headerTab" onclick="Game.addStat(Game.STAT_DEX, Number.MAX_SAFE_INTEGER);">+ALL DEX</span>
+                  <span class="headerTab" onclick="Game.addStat(Game.STAT_STR, 1);">+1 点</span>
+                  <span class="headerTab" onclick="Game.addStat(Game.STAT_STR, 10);">+10 点</span>
+                  <span class="headerTab" onclick="Game.addStat(Game.STAT_STR, Number.MAX_SAFE_INTEGER);">+全部</span>
                 </td>
               </tr>
               <tr>
                 <td colspan="4">
-                  <div style="font-weight:bold;font-size:18px;">Intelligence (<span id="player_intPointsBase" style="font-size:18px;"></span><span id="player_intPointsAssigned" class="q223" style="font-size:18px;"></span>)</div>
-                  <div style="margin-left:0.5em;">Increases damage dealt with magic weapons.<br />Increases chance to dodge attacks by <span id="player_statPointDodgeChance"></span>%.</div>
+                  <div style="font-weight:bold;font-size:18px;">灵敏 (<span id="player_dexPointsBase" style="font-size:18px;"></span><span id="player_dexPointsAssigned" class="q223" style="font-size:18px;"></span>)</div>
+                  <div style="margin-left:0.5em;">增加远程武器伤害.<br />增加致命一击几率 <span id="player_statPointCritChance"></span>%.</div>
                 </td>
                 <td colspan="2" style="text-align:center;" class="statAddButtons">
-                  <span class="headerTab" onclick="Game.addStat(Game.STAT_INT, 1);">+1 INT</span>
-                  <span class="headerTab" onclick="Game.addStat(Game.STAT_INT, 10);">+10 INT</span>
-                  <span class="headerTab" onclick="Game.addStat(Game.STAT_INT, Number.MAX_SAFE_INTEGER);">+ALL INT</span>
+                  <span class="headerTab" onclick="Game.addStat(Game.STAT_DEX, 1);">+1 点</span>
+                  <span class="headerTab" onclick="Game.addStat(Game.STAT_DEX, 10);">+10 点</span>
+                  <span class="headerTab" onclick="Game.addStat(Game.STAT_DEX, Number.MAX_SAFE_INTEGER);">+全部</span>
                 </td>
               </tr>
               <tr>
                 <td colspan="4">
-                  <div style="font-weight:bold;font-size:18px;">Constitution (<span id="player_conPointsBase" style="font-size:18px;"></span><span id="player_conPointsAssigned" class="q223" style="font-size:18px;"></span>)</div>
-                  <div style="margin-left:0.5em;">Increases maximum health and health restored when idle.<br />Gives a <span id="player_statPointHealChance"></span>% chance to gain HP equal to your constitution when attacking.</div>
+                  <div style="font-weight:bold;font-size:18px;">智力 (<span id="player_intPointsBase" style="font-size:18px;"></span><span id="player_intPointsAssigned" class="q223" style="font-size:18px;"></span>)</div>
+                  <div style="margin-left:0.5em;">增加魔法武器伤害.<br />增加躲避攻击几率 <span id="player_statPointDodgeChance"></span>%.</div>
                 </td>
                 <td colspan="2" style="text-align:center;" class="statAddButtons">
-                  <span class="headerTab" onclick="Game.addStat(Game.STAT_CON, 1);">+1 CON</span>
-                  <span class="headerTab" onclick="Game.addStat(Game.STAT_CON, 10);">+10 CON</span>
-                  <span class="headerTab" onclick="Game.addStat(Game.STAT_CON, Number.MAX_SAFE_INTEGER);">+ALL CON</span>
+                  <span class="headerTab" onclick="Game.addStat(Game.STAT_INT, 1);">+1 点</span>
+                  <span class="headerTab" onclick="Game.addStat(Game.STAT_INT, 10);">+10 点</span>
+                  <span class="headerTab" onclick="Game.addStat(Game.STAT_INT, Number.MAX_SAFE_INTEGER);">+全部</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <div style="font-weight:bold;font-size:18px;">体力 (<span id="player_conPointsBase" style="font-size:18px;"></span><span id="player_conPointsAssigned" class="q223" style="font-size:18px;"></span>)</div>
+                  <div style="margin-left:0.5em;">增加生命值上限和恢复速度.<br />有 <span id="player_statPointHealChance"></span>% 几率获得和攻击时的生命值的恢复.</div>
+                </td>
+                <td colspan="2" style="text-align:center;" class="statAddButtons">
+                  <span class="headerTab" onclick="Game.addStat(Game.STAT_CON, 1);">+1 点</span>
+                  <span class="headerTab" onclick="Game.addStat(Game.STAT_CON, 10);">+10 点</span>
+                  <span class="headerTab" onclick="Game.addStat(Game.STAT_CON, Number.MAX_SAFE_INTEGER);">+全部</span>
                 </td>
               </tr>
             </table>
@@ -110,8 +110,8 @@
                 </td>
               </tr>
             </table>
-            <div class="powerHeader">Statistics</div>
-            <span class="underLineMe" style="font-size:16px;font-weight:bold;margin-left:0.5em;" onclick="toggleHelpVis('offenseStats');">Offense</span><br />
+            <div class="powerHeader">战斗统计</div>
+            <span class="underLineMe" style="font-size:16px;font-weight:bold;margin-left:0.5em;" onclick="toggleHelpVis('offenseStats');">进攻</span><br />
             <div class="playerStatistics offenseStats" style="padding:5px 0px;">
               <span style="font-size:14px;margin-left:1em;">Total Damage Dealt: <span id="player_statTotalDMG"></span> over <span id="player_statAttacks"></span> attack(s).</span><br />
               <span style="margin-left:1.5em">Melee Damage: <span id="player_statMeleeOut"></span></span><br />
@@ -128,7 +128,7 @@
               <span style="margin-left:1.5em;">Enemies confused: <span id="player_statConfusionOut"></span></span><br />
               <span style="margin-left:1.5em;">Enemy attacks stopped with Paralysis: <span id="player_statParahaxOut"></span></span>
             </div>
-            <span class="underLineMe" style="font-size:16px;font-weight:bold;margin-left:0.5em;" onclick="toggleHelpVis('defenseStats');">Defense</span><br />
+            <span class="underLineMe" style="font-size:16px;font-weight:bold;margin-left:0.5em;" onclick="toggleHelpVis('defenseStats');">防御</span><br />
             <div class="playerStatistics defenseStats" style="padding:5px 0px;">
               <span style="font-size:14px;margin-left:1em;">Total Damage Taken: <span id="player_statTotalDMGTaken"></span> over <span id="player_statAttacksTaken"></span> attack(s).</span><br />
               <span style="margin-left:1.5em">Melee Damage: <span id="player_statMeleeIn"></span></span><br />
@@ -143,7 +143,7 @@
               <span style="margin-left:1.5em;">Times confused: <span id="player_statConfusionIn"></span></span><br />
               <span style="margin-left:1.5em;">Attacks lost to paralysis: <span id="player_statParahaxIn"></span></span><br />
             </div>
-            <span class="underLineMe" style="font-size:16px;font-weight:bold;margin-left:0.5em;" onclick="toggleHelpVis('inventoryStats');">Inventory</span><br />
+            <span class="underLineMe" style="font-size:16px;font-weight:bold;margin-left:0.5em;" onclick="toggleHelpVis('inventoryStats');">清单</span><br />
             <div class="playerStatistics inventoryStats" style="padding:5px 0px;">
               <span style="margin-left:1em;">Item upgrades bought: <span id="player_upgradesBought"></span></span><br />
               <span style="margin-left:1em;">Item reforges bought: <span id="player_reforgesBought"></span></span><br />
@@ -159,7 +159,7 @@
               <span style="margin-left:1.5em;">From combat: <span id="player_combatScrap"></span></span><br />
               <span style="margin-left:1.5em;">From item conversions: <span id="player_salesScrap"></span></span><br />
             </div>
-            <span class="underLineMe" style="font-size:16px;font-weight:bold;margin-left:0.5em;" onclick="toggleHelpVis('miscStats');">Misc</span><br />
+            <span class="underLineMe" style="font-size:16px;font-weight:bold;margin-left:0.5em;" onclick="toggleHelpVis('miscStats');">失误率</span><br />
             <div class="playerStatistics miscStats" style="padding:5px 0px;">
               <span style="margin-left:1em;">Battles won: <span id="player_battlesWon"></span></span><br />
               <span style="margin-left:1em;">Battles lost: <span id="player_battlesLost"></span></span><br />
@@ -196,7 +196,7 @@
               </tr>
               <tr>
                 <td>
-                  <div class="powerHeader">Combat Log</div>
+                  <div class="powerHeader">战斗日志</div>
                   <div id="logBody"></div>
                 </td>
               </tr>
@@ -206,13 +206,13 @@
             <table class="subTable">
               <tr>
                 <td>
-                  <div class="powerHeader">Current Zone</div>
+                  <div class="powerHeader">地图</div>
                   <div id="currentZone"></div>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div class="powerHeader">Zone List</div>
+                  <div class="powerHeader">地图列表</div>
                   <div id="zoneList"></div>
               </tr>
             </table>
@@ -224,7 +224,7 @@
                   <table id="availableSkills" class="availableSkillsPanel">
                     <tr>
                       <td id="availableSkillsHeader">
-                        <div class="powerHeader">Available Skills (<span id="powerPointsOut"></span> points available):</div>
+                        <div class="powerHeader">未分配技能点 (<span id="powerPointsOut"></span> 可以分配):</div>
                       </td>
                     </tr>
                     <tr id="available_row">
@@ -240,13 +240,13 @@
                       <td id="available_area_special"></td>
                     </tr>
                   </table>
-                  <div class="powerHeader">Selected Skills</div>
+                  <div class="powerHeader">选择技能</div>
                   <table id="purchasedPowers" class="availableSkillsPanel">
                     <tr>
                       <td id="purchased_area"></td>
                     </tr>
                   </table>
-                  <span class="nonPanelButton" id="powerReset" onclick="Game.resetPowers();">Reset your Skills</span>
+                  <span class="nonPanelButton" id="powerReset" onclick="Game.resetPowers();">重置技能</span>
                 </td>
               </tr>
             </table>
@@ -254,11 +254,11 @@
           <div id="inventoryTable" class="rootTable" style="display:none;">
             <table class="subTable">
               <tr id="cleanup">
-                <td><span class="nonPanelButton" onclick="Game.automaticInventoryClear();">Clean Inventory</span></td>
+                <td><span class="nonPanelButton" onclick="Game.automaticInventoryClear();">清理背包</span></td>
               </tr>
               <tr id="enemyItems" style="display:none;">
                 <td>
-                  <div class="powerHeader">Enemy Inventory</div>
+                  <div class="powerHeader">敌人背包</div>
                 </td>
               </tr>
               <tr>
@@ -268,7 +268,7 @@
               </tr>
               <tr id="weaponCache" style="display:none;">
                 <td>
-                  <div class="powerHeader">Weapon Cache</div>
+                  <div class="powerHeader">武器</div>
                 </td>
               </tr>
               <tr>
@@ -278,7 +278,7 @@
               </tr>
               <tr id="armourCache" style="display:none;">
                 <td>
-                  <div class="powerHeader">Armour Cache</div>
+                  <div class="powerHeader">装备</div>
                 </td>
               </tr>
               <tr>
@@ -288,7 +288,7 @@
               </tr>
               <tr id="potionCache" style="display:none;">
                 <td>
-                  <div class="powerHeader">Potion Cache</div>
+                  <div class="powerHeader">药剂</div>
                 </td>
                 <td>
                   <div id="potionsOut"></div>
@@ -300,7 +300,7 @@
             <table class="subTable">
               <tr>
                 <td colspan="2">
-                  <div class="powerHeader">Upgrading Items</div>
+                  <div class="powerHeader">升级</div>
                 </td>
               </tr>
               <tr>
@@ -313,115 +313,115 @@
               </tr>
             </table>
             <div>
-              <div class="powerHeader">Weapon Debuffs</div>
+              <div class="powerHeader">重新锻造武器属性</div>
               <table class="subTable">
                 <tr>
                   <td colspan="6">
-                    <div style="font-weight:bold;font-size:18px;">Armour Shred</div>
-                    <div style="margin-left:0.5em;">Causes your attacks to ignore the target's armour resistances for 10 <span class="q223">(15)</span> seconds.</div>
+                    <div style="font-weight:bold;font-size:18px;">盔甲碎片</div>
+                    <div style="margin-left:0.5em;">使你的攻击忽略目标盔甲强度，持续10 <span class="q223">(15)</span> 秒.</div>
                   </td>
                   <td colspan="4" style="text-align:center;">
-                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_SHRED, false);">Standard (4 scrap)</span>
-                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_SHRED, true);">Superior (8 scrap)</span>
+                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_SHRED, false);">正常 (4 碎片)</span>
+                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_SHRED, true);">高级 (8 碎片)</span>
                   </td>
                 </tr>
                 <tr>
                   <td colspan="6">
-                    <div style="font-weight:bold;font-size:18px;">Double Attack</div>
-                    <div style="margin-left:0.5em;">Causes your attacks to deal a second hit for 50% <span class="q223">(70%)</span> of the main hit's damage for 10 <span class="q223">(15)</span> seconds.</div>
+                    <div style="font-weight:bold;font-size:18px;">双重攻击</div>
+                    <div style="margin-left:0.5em;">产生二次攻击，造成的伤害是第一次的 50% <span class="q223">(70%)</span> 持续 10 <span class="q223">(15)</span> 秒.</div>
                   </td>
                   <td colspan="4" style="text-align:center;">
-                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_MULTI, false);">Standard (4 scrap)</span>
-                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_MULTI, true);">Superior (8 scrap)</span>
+                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_MULTI, false);">正常 (4 碎片)</span>
+                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_MULTI, true);">高级 (8 碎片)</span>
                   </td>
                 </tr>
                 <tr>
                   <td colspan="6">
-                    <div style="font-weight:bold;font-size:18px;">Health Drain</div>
-                    <div style="margin-left:0.5em;">Restores health equal to 20% <span class="q223">(30%)</span> of weapon DPS every second for 10 <span class="q223">(15)</span> seconds.</div>
+                    <div style="font-weight:bold;font-size:18px;">生命恢复</div>
+                    <div style="margin-left:0.5em;">每秒恢复生命值 20% <span class="q223">(30%)</span> 的武器输出量，持续 10 <span class="q223">(15)</span> 秒.</div>
                   </td>
                   <td colspan="4" style="text-align:center;">
-                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DRAIN, false);">Standard (4 scrap)</span>
-                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DRAIN, true);">Superior (8 scrap)</span>
+                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DRAIN, false);">正常 (4 碎片)</span>
+                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DRAIN, true);">高级 (8 碎片)</span>
                   </td>
                 </tr>
                 <tr>
                   <td colspan="6">
-                    <div style="font-weight:bold;font-size:18px;">Slower Attacks</div>
-                    <div style="margin-left:0.5em;">Increases the delay between the victim's attacks by 15% <span class="q223">(25%)</span> for 10 <span class="q223">(15)</span> seconds.</div>
+                    <div style="font-weight:bold;font-size:18px;">迟缓</div>
+                    <div style="margin-left:0.5em;">减速敌人的攻击 15% <span class="q223">(25%)</span> 持续 10 <span class="q223">(15)</span> 秒.</div>
                   </td>
                   <td colspan="4" style="text-align:center;">
-                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_SLOW, false);">Standard (4 scrap)</span>
-                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_SLOW, true);">Superior (8 scrap)</span>
+                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_SLOW, false);">正常 (4 碎片))</span>
+                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_SLOW, true);">高级 (8 碎片)</span>
                   </td>
                 </tr>
                 <tr>
                   <td colspan="6">
-                    <div style="font-weight:bold;font-size:18px;">Confusion</div>
-                    <div style="margin-left:0.5em;">Causes the victim's next attack to be directed at themselves. This debuff does not have a superior version.</div>
+                    <div style="font-weight:bold;font-size:18px;">混乱</div>
+                    <div style="margin-left:0.5em;">使目标下一次攻击，攻击自己.</div>
                   </td>
                   <td colspan="4" style="text-align:center;">
-                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_MC, true);">Standard (4 scrap)</span>
+                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_MC, true);">正常 (4 碎片)</span>
                   </td>
                 </tr>
                 <tr>
                   <td colspan="6">
-                    <div style="font-weight:bold;font-size:18px;">Damage over Time</div>
-                    <div style="margin-left:0.5em;">Deals 20% <span class="q223">(30%)</span> of your weapon's DPS to the victim every second for 10 <span class="q223">(15)</span> seconds.</div>
+                    <div style="font-weight:bold;font-size:18px;">持续伤害</div>
+                    <div style="margin-left:0.5em;">每秒对目标造成 20% <span class="q223">(30%)</span> 的武器伤害，持续 10 <span class="q223">(15)</span> 秒.</div>
                   </td>
                   <td colspan="4" style="text-align:center;">
-                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DOT, false);">Standard (4 scrap)</span>
-                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DOT, true);">Superior (8 scrap)</span>
+                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DOT, false);">正常 (4 碎片)</span>
+                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DOT, true);">高级 (8 碎片)</span>
                   </td>
                 </tr>
                 <tr>
                   <td colspan="6">
-                    <div style="font-weight:bold;font-size:18px;">Paralysis</div>
-                    <div style="margin-left:0.5em;">Causes the victim's attacks to be interrupted 15% <span class="q223">(25%)</span> of the time for 10 <span class="q223">(15)</span> seconds.</div>
+                    <div style="font-weight:bold;font-size:18px;">麻痹</div>
+                    <div style="margin-left:0.5em;">增加目标攻击失败的几率，有 15% <span class="q223">(25%)</span> 的可能，持续 10 <span class="q223">(15)</span> 秒.</div>
                   </td>
                   <td colspan="4" style="text-align:center;">
-                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_PARAHAX, false);">Standard (4 scrap)</span>
-                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_PARAHAX, true);">Superior (8 scrap)</span>
+                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_PARAHAX, false);">正常 (4 碎片)</span>
+                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_PARAHAX, true);">高级 (8 碎片)</span>
                   </td>
                 </tr>
                 <tr>
                   <td colspan="6">
-                    <div style="font-weight:bold;font-size:18px;">Doom</div>
-                    <div style="margin-left:0.5em;">The victim has a 5% <span class="q223">(7%)</span> chance to instantly die when this debuff expires, dealing 250% <span class="q223">(350%)</span> of weapon DPS if the victim lives.</div>
+                    <div style="font-weight:bold;font-size:18px;">厄运</div>
+                    <div style="margin-left:0.5em;">给予 5% <span class="q223">(7%)</span> 的机会一击必杀，如果不能给予 250% <span class="q223">(350%)</span> 的武器伤害.</div>
                   </td>
                   <td colspan="4" style="text-align:center;">
-                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DOOM, false);">Standard (4 scrap)</span>
-                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DOOM, true);">Superior (8 scrap)</span>
+                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DOOM, false);">正常 (4 碎片)</span>
+                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DOOM, true);">高级 (8 碎片)</span>
                   </td>
                 </tr>
                 <tr>
                   <td colspan="6">
-                    <div style="font-weight:bold;font-size:18px;">Disarm</div>
-                    <div style="margin-left:0.5em;">Halves the victim's damage output and prevents them applying debuffs for 10 <span class="q223">(15)</span> seconds.</div>
+                    <div style="font-weight:bold;font-size:18px;">缴械</div>
+                    <div style="margin-left:0.5em;">将目标的武器伤害降底%50，防止目标释放技能持续 10 <span class="q223">(15)</span> 秒.</div>
                   </td>
                   <td colspan="4" style="text-align:center;">
-                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DISARM, false);">Standard (4 scrap)</span>
-                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DISARM, true);">Superior (8 scrap)</span>
+                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DISARM, false);">正常 (4 碎片)</span>
+                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_DISARM, true);">高级 (8 碎片)</span>
                   </td>
                 </tr>
                 <tr>
                   <td colspan="6">
-                    <div style="font-weight:bold;font-size:18px;">Sleep</div>
-                    <div style="margin-left:0.5em;">Prevents the victim from attacking for 10 <span class="q223">(15)</span> seconds. Has a 60% <span class="q223">(40%)</span> chance to break when the victim is damaged.</div>
+                    <div style="font-weight:bold;font-size:18px;">昏睡</div>
+                    <div style="margin-left:0.5em;">防止目标攻击 10 <span class="q223">(15)</span> 秒. 有 60% <span class="q223">(40%)</span> 的几率被打断.</div>
                   </td>
                   <td colspan="4" style="text-align:center;">
-                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_SLEEP, false);">Standard (4 scrap)</span>
-                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_SLEEP, true);">Superior (8 scrap)</span>
+                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_SLEEP, false);">正常 (4 碎片)</span>
+                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(Game.DEBUFF_SLEEP, true);">高级 (8 碎片)</span>
                   </td>
                 </tr>
                 <tr>
                   <td colspan="6">
-                    <div style="font-weight:bold;font-size:18px;">Random</div>
-                    <div style="margin-left:0.5em;">Selects a debuff to apply at random from the list above.</div>
+                    <div style="font-weight:bold;font-size:18px;">随机</div>
+                    <div style="margin-left:0.5em;">从列出的其它属性中随机选择一个.</div>
                   </td>
                   <td colspan="4" style="text-align:center;">
-                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(0, false);">Standard (4 scrap)</span>
-                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(0, true);">Superior (8 scrap)</span>
+                    <span class="headerTab-ex" onclick="Game.reforgeWeapon(0, false);">正常 (4 碎片)</span>
+                    <span class="q223 headerTab-ex" onclick="Game.reforgeWeapon(0, true);">高级 (8 碎片)</span>
                   </td>
                 </tr>
               </table>
@@ -429,11 +429,11 @@
             <table class="subTable">
               <tr style="vertical-align: top">
                 <td>
-                  <div class="powerHeader">Weapons For Sale</div>
+                  <div class="powerHeader">武器商店</div>
                   <div id="storeWeapons"></div>
                 </td>
                 <td>
-                  <div class="powerHeader">Armour For Sale</div>
+                  <div class="powerHeader">装备商店</div>
                   <div id="storeArmour"></div>
                 </td>
               </tr>
@@ -454,7 +454,7 @@
             <table class="subTable">
               <tr>
                 <td>
-                  <div class="powerHeader underLineMe" style="cursor:pointer;" onclick="toggleHelpVis('introBlock');">Introduction</div>
+                  <div class="powerHeader underLineMe" style="cursor:pointer;" onclick="toggleHelpVis('introBlock');">简介</div>
 
                   <p class="introBlock">Remember that old saying, 'war never changes'? Yea, the guys who came up with that never banked on the ground breaking re-discovery of magic, long considered unfeasible by society at large and persecuted out of existence centuries ago.</p>
 
@@ -586,7 +586,7 @@
             <table class="subTable">
               <tr>
                 <td>
-                  <div class="powerHeader">Update News</div>
+                  <div class="powerHeader">更新日志</div>
                   <p><strong>Version 1.1</strong></p>
                   <p>Changes in this version:</p>
                   <ul>
@@ -852,43 +852,43 @@
           <div id="initTable" class="rootTable">
             <table class="subTable">
               <tr>
-                <td>Loading...</td>
+                <td>载入中...</td>
               </tr>
               <tr>
-                <td id="loadedInit" style="display:none;">init.js loaded.</td>
+                <td id="loadedInit" style="display:none;">init.js 载入.</td>
               </tr>
               <tr>
-                <td id="loadedStrings" style="display:none;">strings.js loaded.</td>
+                <td id="loadedStrings" style="display:none;">strings.js 载入.</td>
               </tr>
               <tr>
-                <td id="loadedZones" style="display:none;">zones.js loaded.</td>
+                <td id="loadedZones" style="display:none;">zones.js 载入.</td>
               </tr>
               <tr>
-                <td id="loadedPowers" style="display:none;">skills.js loaded.</td>
+                <td id="loadedPowers" style="display:none;">skills.js 载入.</td>
               </tr>
               <tr>
-                <td id="loadedCombat" style="display:none;">combat.js loaded.</td>
+                <td id="loadedCombat" style="display:none;">combat.js 载入.</td>
               </tr>
               <tr>
-                <td id="loadedInventory" style="display:none;">inventory.js loaded.</td>
+                <td id="loadedInventory" style="display:none;">inventory.js 载入.</td>
               </tr>
               <tr>
-                <td id="loadedPlayer" style="display:none;">player.js loaded.</td>
+                <td id="loadedPlayer" style="display:none;">player.js 载入.</td>
               </tr>
               <tr>
-                <td id="loadedTickers" style="display:none;">tickers.js loaded.</td>
+                <td id="loadedTickers" style="display:none;">tickers.js 载入.</td>
               </tr>
               <tr>
-                <td id="loadedUI" style="display:none;">ui.js loaded.</td>
+                <td id="loadedUI" style="display:none;">ui.js 载入.</td>
               </tr>
               <tr>
-                <td id="loadedUIPanels" style="display:none;">uipanels.js loaded.</td>
+                <td id="loadedUIPanels" style="display:none;">uipanels.js 载入.</td>
               </tr>
               <tr>
-                <td id="loadedBadges" style="display:none;">badges.js loaded.</td>
+                <td id="loadedBadges" style="display:none;">badges.js 载入.</td>
               </tr>
               <tr>
-                <td id="loadedKeybindings" style="display:none;">keybindings.js loaded.</td>
+                <td id="loadedKeybindings" style="display:none;">keybindings.js 载入.</td>
               </tr>
             </table>
           </div>

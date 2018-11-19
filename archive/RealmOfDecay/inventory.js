@@ -21,7 +21,7 @@ Game.equipWeapon = function (index) {
   Game.p_WeaponInventory[index] = currentWep.slice(0);
   Game.updateInventory = true;
   Game.updateForge = true;
-  Game.toastNotification("Equipped <span class='q" + Game.p_Weapon[7] + "'>" + Game.p_Weapon[0].split("|")[0] + "</span>.");
+  Game.toastNotification("已装备 <span class='q" + Game.p_Weapon[7] + "'>" + Game.p_Weapon[0].split("|")[0] + "</span>.");
   Game.badgeCheck(Game.BADGE_BOSSGEAR); // Like a Boss
   Game.badgeCheck(Game.BADGE_BLUE); // Blue in the Face
   Game.badgeCheck(Game.BADGE_PURPLE); // Tastes Like Purple
@@ -34,7 +34,7 @@ Game.equipWeapon = function (index) {
 Game.discardWeapon = function (index) {
   // Don't let them throw me away!
   var thrownWepName = Game.p_WeaponInventory[index][0].split("|")[0];
-  Game.toastNotification("<span class='q" + Game.p_WeaponInventory[index][7] + "'>" + thrownWepName + "</span> tossed away.");
+  Game.toastNotification("<span class='q" + Game.p_WeaponInventory[index][7] + "'>" + thrownWepName + "</span> 被扔掉.");
   Game.p_WeaponInventory.splice(index, 1);
   Game.updateInventory = true;
   Game.TRACK_ITEM_DISCARDS += 1;
@@ -49,7 +49,7 @@ Game.sellWeapon = function (index, loud) {
   salePrice = Math.floor(salePrice * (10 + (Game.p_WeaponInventory[index][7] - Game.QUALITY_NORMAL)) / 10);
   soldWepName = Game.p_WeaponInventory[index][0].split("|")[0];
   if (loud) {
-    Game.toastNotification("<span class='q" + Game.p_WeaponInventory[index][7] + "'>" + soldWepName + "</span> sold for " + salePrice + " seeds.");
+    Game.toastNotification("<span class='q" + Game.p_WeaponInventory[index][7] + "'>" + soldWepName + "</span> 出售获得 " + salePrice + " 种子.");
   }
   Game.p_WeaponInventory.splice(index, 1);
   Game.updateInventory = true;
@@ -88,7 +88,7 @@ Game.scrapWeapon = function (index, loud) {
     salePrice += 1;
   }
   if (loud) {
-    Game.toastNotification("<span class='q" + Game.p_WeaponInventory[index][7] + "'>" + scrappedWepName + "</span> converted into " + salePrice + " scrap.");
+    Game.toastNotification("<span class='q" + Game.p_WeaponInventory[index][7] + "'>" + scrappedWepName + "</span> 转换成 " + salePrice + " 碎片.");
   }
   Game.p_WeaponInventory.splice(index, 1);
   Game.updateInventory = true;
@@ -111,7 +111,7 @@ Game.equipArmour = function (index) {
   Game.p_ArmourInventory[index] = currentArm.slice(0);
   Game.updateInventory = true;
   Game.updateForge = true;
-  Game.toastNotification("Equipped <span class='q" + Game.p_Armour[2] + "'>" + Game.p_Armour[0].split("|")[0] + "</span>.");
+  Game.toastNotification("已装备 <span class='q" + Game.p_Armour[2] + "'>" + Game.p_Armour[0].split("|")[0] + "</span>.");
   Game.badgeCheck(Game.BADGE_BOSSGEAR); // Like a Boss
   Game.badgeCheck(Game.BADGE_BLUE); // Blue in the Face
   Game.badgeCheck(Game.BADGE_PURPLE); // Tastes Like Purple
@@ -123,7 +123,7 @@ Game.equipArmour = function (index) {
 
 Game.discardArmour = function (index) {
   var thrownArmName = Game.p_ArmourInventory[index][0].split("|")[0];
-  Game.toastNotification("<span class='q" + Game.p_ArmourInventory[index][2] + "'>" + thrownArmName + "</span> tossed away.");
+  Game.toastNotification("<span class='q" + Game.p_ArmourInventory[index][2] + "'>" + thrownArmName + "</span> 被扔掉.");
   Game.p_ArmourInventory.splice(index, 1);
   Game.updateInventory = true;
   Game.TRACK_ITEM_DISCARDS += 1;
@@ -138,7 +138,7 @@ Game.sellArmour = function (index, loud) {
   salePrice = Math.floor(salePrice * (10 + (Game.p_ArmourInventory[index][2] - Game.QUALITY_NORMAL)) / 10);
   soldArmName = Game.p_ArmourInventory[index][0].split("|")[0];
   if (loud) {
-    Game.toastNotification("<span class='q" + Game.p_ArmourInventory[index][2] + "'>" + soldArmName + "</span> sold for " + salePrice + " seeds.");
+    Game.toastNotification("<span class='q" + Game.p_ArmourInventory[index][2] + "'>" + soldArmName + "</span> 出售得到 " + salePrice + " 种子.");
   }
   Game.p_ArmourInventory.splice(index, 1);
   Game.updateInventory = true;
@@ -573,14 +573,14 @@ Game.buyWeapon = function (index) {
   purchase = Game.p_WeaponShopStock[index];
   cost = 2 * Game.calculateItemLevelPrice(purchase[1], purchase[7]);
   if (Game.p_WeaponInventory.length === Game.MAX_INVENTORY) {
-    Game.toastNotification("Weapon inventory is full...");
+    Game.toastNotification("武器背包已满....");
     return 0;
   }
   if (Game.p_Currency >= cost) {
     Game.p_WeaponInventory.push(purchase);
     Game.p_WeaponShopStock.splice(index, 1);
     Game.p_Currency -= cost;
-    Game.toastNotification("Purchased <span class='q" + purchase[7] + "'>" + purchase[0].split("|")[0] + "</span>.");
+    Game.toastNotification("已购买 <span class='q" + purchase[7] + "'>" + purchase[0].split("|")[0] + "</span>.");
     Game.giveBadge(Game.BADGE_FIRST_BUY);
     Game.PROGRESS_SPEND += cost;
     Game.badgeCheck(Game.BADGE_SPEND3);
@@ -590,7 +590,7 @@ Game.buyWeapon = function (index) {
     Game.badgeCheck(Game.BADGE_FULL_ARM); // Armour Hoarder
     Game.badgeCheck(Game.BADGE_FULL_AMAZING); // Expensive Tastes
   } else {
-    Game.toastNotification("Not enough seeds...");
+    Game.toastNotification("没有足够的种子...");
   }
   Game.drawActivePanel();
 };
@@ -601,14 +601,14 @@ Game.buyArmour = function (index) {
   purchase = Game.p_ArmourShopStock[index];
   cost = 2 * Game.calculateItemLevelPrice(purchase[1], purchase[2]);
   if (Game.p_ArmourInventory.length === Game.MAX_INVENTORY) {
-    Game.toastNotification("Armour inventory is full...");
+    Game.toastNotification("装备背包已满...");
     return 0;
   }
   if (Game.p_Currency >= cost) {
     Game.p_ArmourInventory.push(purchase);
     Game.p_ArmourShopStock.splice(index, 1);
     Game.p_Currency -= cost;
-    Game.toastNotification("Purchased <span class='q" + purchase[2] + "'>" + purchase[0].split("|")[0] + "</span>.");
+    Game.toastNotification("已购买 <span class='q" + purchase[2] + "'>" + purchase[0].split("|")[0] + "</span>.");
     Game.giveBadge(Game.BADGE_FIRST_BUY);
     Game.PROGRESS_SPEND += cost;
     Game.badgeCheck(Game.BADGE_SPEND3);
@@ -618,7 +618,7 @@ Game.buyArmour = function (index) {
     Game.badgeCheck(Game.BADGE_FULL_ARM); // Armour Hoarder
     Game.badgeCheck(Game.BADGE_FULL_AMAZING); // Expensive Tastes
   } else {
-    Game.toastNotification("Not enough seeds...");
+    Game.toastNotification("没有足够的种子...");
   }
   Game.drawActivePanel();
 };
@@ -628,11 +628,11 @@ Game.buyWeaponLevelUpgrade = function () {
   if (Game.p_Currency >= upgradeCost) {
     Game.p_Currency -= upgradeCost;
     Game.upgradeWeaponLevel(Game.p_Weapon);
-    Game.toastNotification("Weapon level upgraded.");
+    Game.toastNotification("武器等级提升.");
     Game.TRACK_UPGRADES += 1;
     Game.drawActivePanel();
   } else {
-    Game.toastNotification("Not enough seeds...");
+    Game.toastNotification("没有足够的种子...");
   }
   Game.updateForge = true;
 };
@@ -642,11 +642,11 @@ Game.buyArmourLevelUpgrade = function () {
   if (Game.p_Currency >= upgradeCost) {
     Game.p_Currency -= upgradeCost;
     Game.upgradeArmourLevel(Game.p_Armour);
-    Game.toastNotification("Armour level upgraded.");
+    Game.toastNotification("装备等级提升.");
     Game.TRACK_UPGRADES += 1;
     Game.drawActivePanel();
   } else {
-    Game.toastNotification("Not enough seeds...");
+    Game.toastNotification("没有足够的种子...");
   }
   Game.updateForge = true;
 };
@@ -721,14 +721,14 @@ Game.buyWeaponQualityUpgrade = function () {
   if (Game.p_Weapon[7] < Game.QUALITY_AMAZING && Game.p_Scrap >= scrapCost) {
     Game.p_Scrap -= scrapCost;
     Game.upgradeWeaponQuality(Game.p_Weapon);
-    Game.toastNotification("Weapon quality upgraded");
+    Game.toastNotification("武器品阶升级");
     Game.TRACK_UPGRADES += 1;
     Game.drawActivePanel();
   } else {
     if (Game.p_Weapon[7] === Game.QUALITY_AMAZING) {
-      Game.toastNotification("Weapon already at highest quality.");
+      Game.toastNotification("武器已经达到了最高的品阶.");
     } else {
-      Game.toastNotification("Not enough scrap...");
+      Game.toastNotification("没有足够的碎片...");
     }
   }
   Game.updateForge = true;
@@ -821,14 +821,14 @@ Game.buyArmourQualityUpgrade = function () {
   if (Game.p_Armour[2] < Game.QUALITY_AMAZING && Game.p_Scrap >= scrapCost) {
     Game.p_Scrap -= scrapCost;
     Game.upgradeArmourQuality(Game.p_Armour);
-    Game.toastNotification("Armour quality upgraded");
+    Game.toastNotification("装甲品阶升级");
     Game.TRACK_UPGRADES += 1;
     Game.drawActivePanel();
   } else {
     if (Game.p_Armour[2] === Game.QUALITY_AMAZING) {
-      Game.toastNotification("Armour already at highest quality.");
+      Game.toastNotification("装甲已经达到最高品阶.");
     } else {
-      Game.toastNotification("Not enough scrap...");
+      Game.toastNotification("没有足够碎片...");
     }
   }
   Game.updateForge = true;
@@ -861,7 +861,7 @@ Game.automaticInventoryClear = function () {
         break;
     }
   }
-  Game.toastNotification("Inventory cleaning gave " + prettifyNumber(seedsGained) + " seeds and " + prettifyNumber(scrapGained) + " scrap.");
+  Game.toastNotification("库存清理获得 " + prettifyNumber(seedsGained) + " 种子和 " + prettifyNumber(scrapGained) + " 碎片.");
 };
 
 // These two don't get called often, because they're only for the lazy who don't sell their stuff.
@@ -870,7 +870,7 @@ Game.takeWeapon = function () {
     Game.p_WeaponInventory.push(Game.last_Weapon.slice(0));
     Game.last_Weapon = [];
   } else {
-    Game.toastNotification("Weapon inventory is full.");
+    Game.toastNotification("武器背包已满.");
   }
   Game.badgeCheck(Game.BADGE_BLUE); // Blue in the Face
   Game.badgeCheck(Game.BADGE_PURPLE); // Tastes Like Purple
@@ -886,7 +886,7 @@ Game.takeArmour = function () {
     Game.p_ArmourInventory.push(Game.last_Armour.slice(0));
     Game.last_Armour = [];
   } else {
-    Game.toastNotification("Armour inventory is full.");
+    Game.toastNotification("装备背包已满.");
   }
   Game.badgeCheck(Game.BADGE_BLUE); // Blue in the Face
   Game.badgeCheck(Game.BADGE_PURPLE); // Tastes Like Purple
@@ -907,11 +907,11 @@ Game.reforgeWeapon = function (debuff, isSuperior) {
     debuffCost *= 4;
   }
   if (Game.p_Weapon[7] < Game.QUALITY_GREAT && isSuperior) {
-    Game.toastNotification("Only Great or Amazing weapons can be given Superior debuffs.");
+    Game.toastNotification("只有优秀的或传奇的武器，才能获得优越的增幅效果.");
   } else if (Game.p_Weapon[7] < Game.QUALITY_GOOD) {
-    Game.toastNotification("Reforging is not available for weapons below 'Good' quality.");
+    Game.toastNotification("对于低于“良好”的武器来说，重新锻造是不可用的.");
   } else if (Game.p_Scrap < debuffCost) {
-    Game.toastNotification("You cannot afford this reforge.");
+    Game.toastNotification("你负担不起这种重建.");
   } else {
     isRandom = false;
     if (debuff < Game.DEBUFF_SHRED) {
@@ -924,11 +924,11 @@ Game.reforgeWeapon = function (debuff, isSuperior) {
     validDebuffName = false;
     if ((isSuperior || debuff === Game.DEBUFF_MC) && !isRandom) {
       while (!validDebuffName) {
-        dbName = prompt("Please provide a new debuff name. Leave blank to use default. Max 30 characters. \n\n(Selected type: " + Game.debuff_names[debuff - Game.DEBUFF_SHRED] + ")");
+        dbName = prompt("请提供一个新的负面效果名称。保留空白以使用默认值。最多30个字符。 \n\n(选择类型: " + Game.debuff_names[debuff - Game.DEBUFF_SHRED] + ")");
         if (dbName.length > 30) {
-          alert("The text provided was too long, please try something shorter.");
+          alert("所提供的文本太长，请尽量缩短.");
         } else if (/[<>|]/g.test(dbName)) {
-          alert("The text provided contained invalid characters, please try something else.");
+          alert("所提供的文本包含无效字符，请尝试其他内容.");
         } else if (dbName.trim() === "") {
           dbName = Game.debuff_names[debuff - Game.DEBUFF_SHRED];
           validDebuffName = true;
@@ -941,73 +941,73 @@ Game.reforgeWeapon = function (debuff, isSuperior) {
     switch (debuff) {
       case 241:
         if (isSuperior) {
-          Game.p_Weapon[9] = [241, (dbName.trim() === "" ? "Ruthlessness" : dbName), 15, -1];
+          Game.p_Weapon[9] = [241, (dbName.trim() === "" ? "冷酷无情" : dbName), 15, -1];
         } else {
-          Game.p_Weapon[9] = [241, "Ruthlessness", 10, -1];
+          Game.p_Weapon[9] = [241, "冷酷无情", 10, -1];
         }
         break;
       case 242:
         if (isSuperior) {
-          Game.p_Weapon[9] = [242, (dbName.trim() === "" ? "Frenzy" : dbName), 15, 70];
+          Game.p_Weapon[9] = [242, (dbName.trim() === "" ? "狂暴" : dbName), 15, 70];
         } else {
-          Game.p_Weapon[9] = [242, "Frenzy", 10, 50];
+          Game.p_Weapon[9] = [242, "狂暴", 10, 50];
         }
         break;
       case 243:
         if (isSuperior) {
-          Game.p_Weapon[9] = [243, (dbName.trim() === "" ? "Bloodthirst" : dbName), 15, 30];
+          Game.p_Weapon[9] = [243, (dbName.trim() === "" ? "嗜血" : dbName), 15, 30];
         } else {
-          Game.p_Weapon[9] = [243, "Bloodthirst", 10, 20];
+          Game.p_Weapon[9] = [243, "嗜血", 10, 20];
         }
         break;
       case 244:
         if (isSuperior) {
-          Game.p_Weapon[9] = [244, (dbName.trim() === "" ? "Cripple" : dbName), 15, 25];
+          Game.p_Weapon[9] = [244, (dbName.trim() === "" ? "削弱" : dbName), 15, 25];
         } else {
-          Game.p_Weapon[9] = [244, "Cripple", 10, 15];
+          Game.p_Weapon[9] = [244, "削弱", 10, 15];
         }
         break;
       case 245:
-        Game.p_Weapon[9] = [245, (dbName.trim() === "" ? "Charm" : dbName), 5, -1];
+        Game.p_Weapon[9] = [245, (dbName.trim() === "" ? "魅力" : dbName), 5, -1];
         break;
       case 246:
         if (isSuperior) {
-          Game.p_Weapon[9] = [246, (dbName.trim() === "" ? "Wound Poison" : dbName), 15, 30];
+          Game.p_Weapon[9] = [246, (dbName.trim() === "" ? "致伤毒药" : dbName), 15, 30];
         } else {
-          Game.p_Weapon[9] = [246, "Wound Poison", 10, 20];
+          Game.p_Weapon[9] = [246, "致伤毒药", 10, 20];
         }
         break;
       case 247:
         if (isSuperior) {
-          Game.p_Weapon[9] = [247, (dbName.trim() === "" ? "Nerve Strike" : dbName), 15, 25];
+          Game.p_Weapon[9] = [247, (dbName.trim() === "" ? "神经攻击" : dbName), 15, 25];
         } else {
-          Game.p_Weapon[9] = [247, "Nerve Strike", 10, 15];
+          Game.p_Weapon[9] = [247, "神经攻击", 10, 15];
         }
         break;
       case 248:
         if (isSuperior) {
-          Game.p_Weapon[9] = [248, (dbName.trim() === "" ? "Mounting Dread" : dbName), 5, 10];
+          Game.p_Weapon[9] = [248, (dbName.trim() === "" ? "恐惧" : dbName), 5, 10];
         } else {
-          Game.p_Weapon[9] = [248, "Mounting Dread", 5, 6];
+          Game.p_Weapon[9] = [248, "恐惧", 5, 6];
         }
         break;
       case 249:
         if (isSuperior) {
-          Game.p_Weapon[9] = [249, (dbName.trim() === "" ? "Disarmed" : dbName), 15, -1];
+          Game.p_Weapon[9] = [249, (dbName.trim() === "" ? "解除武装" : dbName), 15, -1];
         } else {
-          Game.p_Weapon[9] = [249, "Disarmed", 10, -1];
+          Game.p_Weapon[9] = [249, "解除武装", 10, -1];
         }
         break;
       case 250:
         if (isSuperior) {
-          Game.p_Weapon[9] = [250, (dbName.trim() === "" ? "Comatose" : dbName), 15, 10];
+          Game.p_Weapon[9] = [250, (dbName.trim() === "" ? "昏睡" : dbName), 15, 10];
         } else {
-          Game.p_Weapon[9] = [250, "Comatose", 10, 20];
+          Game.p_Weapon[9] = [250, "昏睡", 10, 20];
         }
         break;
     }
     Game.p_Scrap -= debuffCost;
-    Game.toastNotification("Weapon has been reforged.");
+    Game.toastNotification("武器已经重新锻造.");
     Game.TRACK_REFORGES += 1;
     Game.PROGRESS_DEBUFF_SPEND += debuffCost; // Happy Customer
   }
