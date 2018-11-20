@@ -41,7 +41,7 @@ Game.discardWeapon = function (index) {
   Game.badgeCheck(Game.BADGE_DISCARDS);
   Game.drawActivePanel();
 };
-
+//set 1 修改清理背包获取种子数量的方法
 Game.sellWeapon = function (index, loud) {
   var salePrice = 0,
     soldWepName = '';
@@ -61,7 +61,7 @@ Game.sellWeapon = function (index, loud) {
     return salePrice;
   }
 };
-
+//set 1 修改清理背包获取碎片数量的方法
 Game.scrapWeapon = function (index, loud) {
   // Breaking things willingly.
   var salePrice = 0,
@@ -835,7 +835,6 @@ Game.buyArmourQualityUpgrade = function () {
 };
 
 // Let's mop up by combining four functions into one.
-//set 1 修改清理背包获取种子和碎片数量的方法
 Game.automaticInventoryClear = function () {
   // Weapons first
   var i = 0,
