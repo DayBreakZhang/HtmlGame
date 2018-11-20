@@ -60,12 +60,14 @@ Game.levelUp = function () {
       Game.giveBadge(Game.BADGE_NO_NAMES);
     } // Terminally Unimaginative
   }
+  //set 2 升级修改給于属性点方法
   Game.p_StatPoints += 1;
   Game.combatLog("info", "You gained a Stat Point.");
   if (Game.RNG(1, 50) <= Game.powerLevel(Game.SKILL_LUCK_OF_THE_DRAW)) {
     Game.p_StatPoints += 1;
     Game.combatLog("info", "<span class='q222'>Luck of the Draw</span> activates, granting a Stat Point.");
   }
+  //set 3 设置修改技能点方法
   if (Game.p_Level >= 5 && Game.p_Level % 2 === 1) {
     Game.p_SkillPoints += 1;
     Game.combatLog("info", "You gained a Skill Point.");

@@ -835,6 +835,7 @@ Game.buyArmourQualityUpgrade = function () {
 };
 
 // Let's mop up by combining four functions into one.
+//set 1 修改清理背包获取种子和碎片数量的方法
 Game.automaticInventoryClear = function () {
   // Weapons first
   var i = 0,
